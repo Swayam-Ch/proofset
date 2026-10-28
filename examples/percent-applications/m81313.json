@@ -1,6 +1,6 @@
 {
   "title": "Solve General Applications of Percent",
-  "title_de": "Allgemeine Anwendungen von Prozenten lösen",
+  "title_de": "Allgemeine Anwendungen von Prozentsätzen",
   "source": "Source: Prealgebra 2e by OpenStax, https://openstax.org/details/books/prealgebra-2e, licensed CC BY-NC-SA 4.0. Practice problems are new questions written from this chapter.",
   "objectives": [
     "Translate and solve basic percent equations",
@@ -13,34 +13,34 @@
         "id": "p1",
         "level": "warm-up",
         "objective": "Translate and solve basic percent equations",
-        "question": "What number is 25% of 80?",
-        "answer": 20.0,
+        "question": "What number is 30% of 60?",
+        "answer": 18.0,
         "unit": "",
         "hints": [
-          "Remember that 'is' means equals and 'of' means multiply.",
-          "Translate this to: n = 0.25 × 80",
-          "Multiply 0.25 by 80."
+          "Change 30% to a decimal by dividing by 100.",
+          "Multiply the decimal by 60.",
+          "30% means 0.30, so multiply 0.30 × 60."
         ],
-        "solution": "Let n = the number.\nTranslate: n = 0.25 × 80\nMultiply: n = 20\nAnswer: 20"
+        "solution": "Translate: n = 0.30 × 60\nMultiply: n = 18\nThe answer is 18."
       },
       "check": {
         "status": "verified",
-        "reason": "two code runs got 20, matching the key",
+        "reason": "two code runs got 18, matching the key",
         "solver_values": [
-          20.0,
-          20.0
+          18.0,
+          18.0
         ],
         "rounds": 1
       },
       "german": {
         "id": "p1",
-        "question": "Welche Zahl ist 25 % von 80?",
+        "question": "Welche Zahl ist 30 % von 60?",
         "hints": [
-          "Denk daran: 'ist' bedeutet gleich und 'von' bedeutet mal.",
-          "Schreib das so auf: n = 0,25 × 80",
-          "Multipliziere 0,25 mit 80."
+          "Wandle 30 % in eine Dezimalzahl um, indem du durch 100 dividierst.",
+          "Multipliziere die Dezimalzahl mit 60.",
+          "30 % bedeutet 0,30, also multipliziere 0,30 × 60."
         ],
-        "solution": "Lass n = die gesuchte Zahl.\nÜbersetzung: n = 0,25 × 80\nMultipliziere: n = 20\nAntwort: 20",
+        "solution": "Übersetzen: n = 0,30 × 60\nMultiplizieren: n = 18\nDie Antwort ist 18.",
         "unit": ""
       },
       "german_check": "same numbers as the English"
@@ -50,266 +50,15 @@
         "id": "p2",
         "level": "warm-up",
         "objective": "Translate and solve basic percent equations",
-        "question": "18 is what percent of 60?",
-        "answer": 30.0,
-        "unit": "%",
-        "hints": [
-          "Let p = the percent you are looking for.",
-          "Translate: 18 = p × 60",
-          "Divide both sides by 60, then convert to a percent."
-        ],
-        "solution": "Let p = the percent.\nTranslate: 18 = p × 60\nDivide by 60: p = 18 ÷ 60 = 0.3\nConvert to percent: 0.3 = 30%\nAnswer: 30%"
-      },
-      "check": {
-        "status": "verified",
-        "reason": "two code runs got 30, matching the key",
-        "solver_values": [
-          30.0,
-          30.0
-        ],
-        "rounds": 1
-      },
-      "german": {
-        "id": "p2",
-        "question": "18 ist wie viel Prozent von 60?",
-        "hints": [
-          "Lass p = den Prozentsatz, den du suchst.",
-          "Übersetzung: 18 = p × 60",
-          "Teile beide Seiten durch 60 und wandle dann in Prozent um."
-        ],
-        "solution": "Lass p = den Prozentsatz.\nÜbersetzung: 18 = p × 60\nTeile durch 60: p = 18 ÷ 60 = 0,3\nWandle in Prozent um: 0,3 = 30 %\nAntwort: 30 %",
-        "unit": "%"
-      },
-      "german_check": "same numbers as the English"
-    },
-    {
-      "problem": {
-        "id": "p3",
-        "level": "warm-up",
-        "objective": "Translate and solve basic percent equations",
-        "question": "42 is 35% of what number?",
-        "answer": 120.0,
-        "unit": "",
-        "hints": [
-          "Let b = the number you are looking for.",
-          "Translate: 42 = 0.35 × b",
-          "Divide both sides by 0.35."
-        ],
-        "solution": "Let b = the number.\nTranslate: 42 = 0.35 × b\nDivide by 0.35: b = 42 ÷ 0.35 = 120\nAnswer: 120"
-      },
-      "check": {
-        "status": "verified",
-        "reason": "two code runs got 120, matching the key",
-        "solver_values": [
-          120.0,
-          105.0,
-          120.0
-        ],
-        "rounds": 1
-      },
-      "german": {
-        "id": "p3",
-        "question": "42 ist 35 % von welcher Zahl?",
-        "hints": [
-          "Lass b = die Zahl, die du suchst.",
-          "Übersetzung: 42 = 0,35 × b",
-          "Teile beide Seiten durch 0,35."
-        ],
-        "solution": "Lass b = die Zahl.\nÜbersetzung: 42 = 0,35 × b\nTeile durch 0,35: b = 42 ÷ 0,35 = 120\nAntwort: 120",
-        "unit": ""
-      },
-      "german_check": "same numbers as the English"
-    },
-    {
-      "problem": {
-        "id": "p4",
-        "level": "practice",
-        "objective": "Solve applications of percent",
-        "question": "Maria bought a phone for $240. The sales tax is 6%. How much sales tax will she pay? (Round to the nearest cent.)",
-        "answer": 14.4,
-        "unit": "$",
-        "hints": [
-          "You need to find 6% of the phone price.",
-          "Translate: tax = 0.06 × 240",
-          "Multiply to find the tax amount."
-        ],
-        "solution": "Let t = sales tax\nTranslate: t = 0.06 × 240\nMultiply: t = 14.4\nAnswer: $14.4"
-      },
-      "check": {
-        "status": "verified",
-        "reason": "two code runs got 14.4, matching the key",
-        "solver_values": [
-          14.4,
-          14.4
-        ],
-        "rounds": 1
-      },
-      "german": {
-        "id": "p4",
-        "question": "Maria kauft ein Telefon für 240 $. Die Umsatzsteuer beträgt 6 %. Wie viel Umsatzsteuer muss sie bezahlen? (Runde auf den nächsten Cent.)",
-        "hints": [
-          "Du musst 6 % des Telefonpreises berechnen.",
-          "Übersetzung: Steuer = 0,06 × 240",
-          "Multipliziere, um die Steuermenge zu finden."
-        ],
-        "solution": "Lass t = Umsatzsteuer\nÜbersetzung: t = 0,06 × 240\nMultipliziere: t = 14,4\nAntwort: 14,4 $",
-        "unit": "$"
-      },
-      "german_check": "same numbers as the English"
-    },
-    {
-      "problem": {
-        "id": "p5",
-        "level": "practice",
-        "objective": "Solve applications of percent",
-        "question": "A shirt costs $45 and is on sale for 20% off. How much will you save? (Round to the nearest cent.)",
-        "answer": 9.0,
-        "unit": "$",
-        "hints": [
-          "You need to find the discount, which is 20% of the original price.",
-          "Translate: discount = 0.20 × 45",
-          "Multiply to find how much you save."
-        ],
-        "solution": "Let d = discount\nTranslate: d = 0.20 × 45\nMultiply: d = 9\nAnswer: $9"
-      },
-      "check": {
-        "status": "verified",
-        "reason": "two code runs got 9, matching the key",
-        "solver_values": [
-          9.0,
-          9.0
-        ],
-        "rounds": 1
-      },
-      "german": {
-        "id": "p5",
-        "question": "Ein Hemd kostet 45 $ und ist mit 20 % Rabatt im Angebot. Wie viel sparst du? (Runde auf den nächsten Cent.)",
-        "hints": [
-          "Du musst den Rabatt berechnen, das sind 20 % des Originalpreises.",
-          "Übersetzung: Rabatt = 0,20 × 45",
-          "Multipliziere, um herauszufinden, wie viel du sparst."
-        ],
-        "solution": "Lass d = Rabatt\nÜbersetzung: d = 0,20 × 45\nMultipliziere: d = 9\nAntwort: 9 $",
-        "unit": "$"
-      },
-      "german_check": "same numbers as the English"
-    },
-    {
-      "problem": {
-        "id": "p6",
-        "level": "practice",
-        "objective": "Solve applications of percent",
-        "question": "A cereal box says one serving has 8 grams of sugar, which is 16% of the recommended daily amount. What is the total recommended daily amount of sugar? (Round to the nearest whole number.)",
-        "answer": 50.0,
-        "unit": "grams",
-        "hints": [
-          "Let a = total recommended daily amount.",
-          "Translate: 8 = 0.16 × a",
-          "Divide both sides by 0.16."
-        ],
-        "solution": "Let a = total recommended daily amount\nTranslate: 8 = 0.16 × a\nDivide by 0.16: a = 8 ÷ 0.16 = 50\nAnswer: 50 grams"
-      },
-      "check": {
-        "status": "verified",
-        "reason": "two code runs got 50, matching the key",
-        "solver_values": [
-          50.0,
-          50.0
-        ],
-        "rounds": 1
-      },
-      "german": {
-        "id": "p6",
-        "question": "Ein Müslischachtelschildy sagt, dass eine Portion 8 Gramm Zucker hat, was 16 % der empfohlenen Tagesmenge entspricht. Wie hoch ist die gesamte empfohlene Tagesmenge an Zucker? (Runde auf die nächste ganze Zahl.)",
-        "hints": [
-          "Lass a = gesamte empfohlene Tagesmenge.",
-          "Übersetzung: 8 = 0,16 × a",
-          "Teile beide Seiten durch 0,16."
-        ],
-        "solution": "Lass a = gesamte empfohlene Tagesmenge\nÜbersetzung: 8 = 0,16 × a\nTeile durch 0,16: a = 8 ÷ 0,16 = 50\nAntwort: 50 Gramm",
-        "unit": "Gramm"
-      },
-      "german_check": "same numbers as the English"
-    },
-    {
-      "problem": {
-        "id": "p7",
-        "level": "practice",
-        "objective": "Solve applications of percent",
-        "question": "A snack bar has 120 calories total. 27 calories are from protein. What percent of the calories are from protein? (Round to the nearest whole percent.)",
-        "answer": 22.5,
-        "unit": "%",
-        "hints": [
-          "Let p = the percent from protein.",
-          "Translate: What percent of 120 is 27? So 27 = p × 120",
-          "Divide both sides by 120 and convert to percent form."
-        ],
-        "solution": "Let p = percent from protein\nTranslate: 27 = p × 120\nDivide by 120: p = 27 ÷ 120 = 0.225\nConvert to percent: 0.225 = 22.5%\nAnswer: 22.5%"
-      },
-      "check": {
-        "status": "rejected",
-        "reason": "the solvers disagree: 22, 23",
-        "solver_values": [
-          22.0,
-          23.0,
-          23.0
-        ],
-        "rounds": 1
-      },
-      "german": null,
-      "german_check": ""
-    },
-    {
-      "problem": {
-        "id": "p8",
-        "level": "challenge",
-        "objective": "Find percent increase",
-        "question": "Last year, a restaurant charged $12 for a meal. This year, the same meal costs $14.40. Find the percent increase. (Round to the nearest whole percent.)",
-        "answer": 20.0,
-        "unit": "%",
-        "hints": [
-          "First, find the amount of increase: new amount - original amount.",
-          "The increase is what percent of the original amount?",
-          "Translate and solve: increase = p × 12, then convert to percent."
-        ],
-        "solution": "Find the increase: 14.40 - 12 = 2.40\nLet p = percent increase\nTranslate: 2.40 = p × 12\nDivide by 12: p = 2.40 ÷ 12 = 0.20\nConvert to percent: 0.20 = 20%\nAnswer: 20%"
-      },
-      "check": {
-        "status": "verified",
-        "reason": "two code runs got 20, matching the key",
-        "solver_values": [
-          20.0,
-          20.0
-        ],
-        "rounds": 1
-      },
-      "german": {
-        "id": "p8",
-        "question": "Letztes Jahr hat ein Restaurant 12 $ für ein Essen verlangt. Dieses Jahr kostet das gleiche Essen 14,40 $. Berechne die prozentuale Steigerung. (Runde auf den nächsten ganzen Prozentsatz.)",
-        "hints": [
-          "Berechne zuerst den Anstieg: neuer Betrag - ursprünglicher Betrag.",
-          "Der Anstieg ist wie viel Prozent des ursprünglichen Betrags?",
-          "Übersetzung und Lösung: Anstieg = p × 12, dann in Prozent umwandeln."
-        ],
-        "solution": "Berechne den Anstieg: 14,40 - 12 = 2,40\nLass p = prozentuale Steigerung\nÜbersetzung: 2,40 = p × 12\nTeile durch 12: p = 2,40 ÷ 12 = 0,20\nWandle in Prozent um: 0,20 = 20 %\nAntwort: 20 %",
-        "unit": "%"
-      },
-      "german_check": "same numbers as the English"
-    },
-    {
-      "problem": {
-        "id": "p9",
-        "level": "challenge",
-        "objective": "Find percent decrease",
-        "question": "A jacket was priced at $80 but is now on clearance for $60. Find the percent decrease in price. (Round to the nearest whole percent.)",
+        "question": "18 is what percent of 72?",
         "answer": 25.0,
         "unit": "%",
         "hints": [
-          "First, find the amount of decrease: original amount - new amount.",
-          "The decrease is what percent of the original amount?",
-          "Translate and solve: decrease = p × 80, then convert to percent."
+          "Set up the equation: 18 = p × 72",
+          "Divide both sides by 72 to find the decimal form of p.",
+          "Convert the decimal to a percent by multiplying by 100."
         ],
-        "solution": "Find the decrease: 80 - 60 = 20\nLet p = percent decrease\nTranslate: 20 = p × 80\nDivide by 80: p = 20 ÷ 80 = 0.25\nConvert to percent: 0.25 = 25%\nAnswer: 25%"
+        "solution": "Translate: 18 = p × 72\nDivide both sides by 72: p = 18 ÷ 72 = 0.25\nConvert to percent: 0.25 = 25%\nThe answer is 25%."
       },
       "check": {
         "status": "verified",
@@ -321,14 +70,275 @@
         "rounds": 1
       },
       "german": {
-        "id": "p9",
-        "question": "Eine Jacke hatte einen Preis von 80 $ und ist jetzt zum Ausverkaufspreis 60 $ erhältlich. Berechne die prozentuale Preissenkung. (Runde auf den nächsten ganzen Prozentsatz.)",
+        "id": "p2",
+        "question": "18 ist wie viel Prozent von 72?",
         "hints": [
-          "Berechne zuerst den Rückgang: ursprünglicher Betrag - neuer Betrag.",
-          "Der Rückgang ist wie viel Prozent des ursprünglichen Betrags?",
-          "Übersetzung und Lösung: Rückgang = p × 80, dann in Prozent umwandeln."
+          "Stelle die Gleichung auf: 18 = p × 72",
+          "Dividiere beide Seiten durch 72, um die Dezimalform von p zu finden.",
+          "Wandle die Dezimalzahl in einen Prozentsatz um, indem du mit 100 multiplizierst."
         ],
-        "solution": "Berechne den Rückgang: 80 - 60 = 20\nLass p = prozentuale Senkung\nÜbersetzung: 20 = p × 80\nTeile durch 80: p = 20 ÷ 80 = 0,25\nWandle in Prozent um: 0,25 = 25 %\nAntwort: 25 %",
+        "solution": "Übersetzen: 18 = p × 72\nBeide Seiten durch 72 dividieren: p = 18 ÷ 72 = 0,25\nIn Prozent umwandeln: 0,25 = 25 %\nDie Antwort ist 25 %.",
+        "unit": "%"
+      },
+      "german_check": "same numbers as the English"
+    },
+    {
+      "problem": {
+        "id": "p3",
+        "level": "warm-up",
+        "objective": "Translate and solve basic percent equations",
+        "question": "15 is 20% of what number?",
+        "answer": 75.0,
+        "unit": "",
+        "hints": [
+          "Change 20% to a decimal: 0.20",
+          "Set up the equation: 15 = 0.20 × b",
+          "Divide both sides by 0.20 to find b."
+        ],
+        "solution": "Translate: 15 = 0.20 × b\nDivide both sides by 0.20: b = 15 ÷ 0.20 = 75\nThe answer is 75."
+      },
+      "check": {
+        "status": "verified",
+        "reason": "two code runs got 75, matching the key",
+        "solver_values": [
+          75.0,
+          75.0
+        ],
+        "rounds": 1
+      },
+      "german": {
+        "id": "p3",
+        "question": "15 ist 20 % von welcher Zahl?",
+        "hints": [
+          "Wandle 20 % in eine Dezimalzahl um: 0,20",
+          "Stelle die Gleichung auf: 15 = 0,20 × b",
+          "Dividiere beide Seiten durch 0,20, um b zu finden."
+        ],
+        "solution": "Übersetzen: 15 = 0,20 × b\nBeide Seiten durch 0,20 dividieren: b = 15 ÷ 0,20 = 75\nDie Antwort ist 75.",
+        "unit": ""
+      },
+      "german_check": "same numbers as the English"
+    },
+    {
+      "problem": {
+        "id": "p4",
+        "level": "practice",
+        "objective": "Solve applications of percent",
+        "question": "Maria's phone bill was $45. She paid a 12% tax on the bill. What was the amount of tax? (Round to the nearest cent.)",
+        "answer": 5.4,
+        "unit": "$",
+        "hints": [
+          "Change 12% to decimal form.",
+          "Multiply the decimal by the bill amount.",
+          "0.12 × 45 = 5.40"
+        ],
+        "solution": "Translate: tax = 0.12 × 45\nMultiply: tax = 5.40\nThe tax was $5.40."
+      },
+      "check": {
+        "status": "verified",
+        "reason": "two code runs got 5.4, matching the key",
+        "solver_values": [
+          5.4,
+          5.4
+        ],
+        "rounds": 1
+      },
+      "german": {
+        "id": "p4",
+        "question": "Marias Telefonrechnung betrug 45,00 $. Sie zahlte 12 % Steuern auf die Rechnung. Wie hoch war der Steuerbetrag? (Runde auf den nächsten Cent.)",
+        "hints": [
+          "Wandle 12 % in Dezimalform um.",
+          "Multipliziere die Dezimalzahl mit dem Rechnungsbetrag.",
+          "0,12 × 45 = 5,40"
+        ],
+        "solution": "Umwandlung: Steuer = 0,12 × 45\nMultiplikation: Steuer = 5,40\nDie Steuer betrug 5,40 $.",
+        "unit": "$"
+      },
+      "german_check": "same numbers as the English"
+    },
+    {
+      "problem": {
+        "id": "p5",
+        "level": "practice",
+        "objective": "Solve applications of percent",
+        "question": "A juice bottle label says one serving has 24 grams of sugar, which is 48% of the daily recommended amount. What is the total recommended daily amount of sugar?",
+        "answer": 50.0,
+        "unit": "grams",
+        "hints": [
+          "Set up the equation: 24 = 0.48 × b",
+          "Divide both sides by 0.48",
+          "24 ÷ 0.48 = 50"
+        ],
+        "solution": "Translate: 24 = 0.48 × b\nDivide both sides by 0.48: b = 24 ÷ 0.48 = 50\nThe total recommended daily amount is 50 grams."
+      },
+      "check": {
+        "status": "verified",
+        "reason": "two code runs got 50, matching the key",
+        "solver_values": [
+          50.0,
+          100.0,
+          50.0
+        ],
+        "rounds": 1
+      },
+      "german": {
+        "id": "p5",
+        "question": "Das Etikett einer Saftflasche besagt, dass eine Portion 24 Gramm Zucker enthält, was 48 % der täglich empfohlenen Menge ausmacht. Wie hoch ist die Gesamtmenge des täglich empfohlenen Zuckers?",
+        "hints": [
+          "Stelle die Gleichung auf: 24 = 0,48 × b",
+          "Teile beide Seiten durch 0,48",
+          "24 ÷ 0,48 = 50"
+        ],
+        "solution": "Gleichung: 24 = 0,48 × b\nTeile beide Seiten durch 0,48: b = 24 ÷ 0,48 = 50\nDie Gesamtmenge des täglich empfohlenen Zuckers beträgt 50 Gramm.",
+        "unit": "Gramm"
+      },
+      "german_check": "same numbers as the English"
+    },
+    {
+      "problem": {
+        "id": "p6",
+        "level": "practice",
+        "objective": "Solve applications of percent",
+        "question": "A pizza has 320 calories per slice. The label says 120 calories come from fat. What percent of the calories come from fat?",
+        "answer": 37.5,
+        "unit": "%",
+        "hints": [
+          "Set up the equation: p × 320 = 120",
+          "Divide both sides by 320.",
+          "Convert the decimal to a percent."
+        ],
+        "solution": "Translate: p × 320 = 120\nDivide both sides by 320: p = 120 ÷ 320 = 0.375\nConvert to percent: 0.375 = 37.5%\nThe answer is 37.5%."
+      },
+      "check": {
+        "status": "verified",
+        "reason": "two code runs got 37.5, matching the key",
+        "solver_values": [
+          37.5,
+          37.5
+        ],
+        "rounds": 1
+      },
+      "german": {
+        "id": "p6",
+        "question": "Eine Pizza hat 320 Kalorien pro Scheibe. Dem Etikett zufolge stammen 120 Kalorien aus Fett. Welcher Prozentsatz der Kalorien kommt aus Fett?",
+        "hints": [
+          "Stelle die Gleichung auf: p × 320 = 120",
+          "Teile beide Seiten durch 320.",
+          "Wandle die Dezimalzahl in einen Prozentsatz um."
+        ],
+        "solution": "Gleichung: p × 320 = 120\nTeile beide Seiten durch 320: p = 120 ÷ 320 = 0,375\nUmwandlung in Prozentsatz: 0,375 = 37,5 %\nDie Antwort ist 37,5 %.",
+        "unit": "%"
+      },
+      "german_check": "same numbers as the English"
+    },
+    {
+      "problem": {
+        "id": "p7",
+        "level": "practice",
+        "objective": "Solve applications of percent",
+        "question": "A shirt costs $40. It is on sale for 25% off. How much money does the customer save?",
+        "answer": 10.0,
+        "unit": "$",
+        "hints": [
+          "Change 25% to decimal form: 0.25",
+          "Multiply the discount percent by the original price.",
+          "0.25 × 40 = 10"
+        ],
+        "solution": "Translate: savings = 0.25 × 40\nMultiply: savings = 10\nThe customer saves $10."
+      },
+      "check": {
+        "status": "verified",
+        "reason": "two code runs got 10, matching the key",
+        "solver_values": [
+          30.0,
+          10.0,
+          10.0
+        ],
+        "rounds": 1
+      },
+      "german": {
+        "id": "p7",
+        "question": "Ein Hemd kostet 40 $. Es ist um 25 % reduziert. Wie viel Geld spart der Kunde?",
+        "hints": [
+          "Wandle 25 % in Dezimalform um: 0,25",
+          "Multipliziere den Rabatt mit dem ursprünglichen Preis.",
+          "0,25 × 40 = 10"
+        ],
+        "solution": "Übersetze: Ersparnisse = 0,25 × 40\nMultipliziere: Ersparnisse = 10\nDer Kunde spart 10 $.",
+        "unit": "$"
+      },
+      "german_check": "same numbers as the English"
+    },
+    {
+      "problem": {
+        "id": "p8",
+        "level": "challenge",
+        "objective": "Find percent increase and percent decrease",
+        "question": "Last year a store sold 200 toys. This year the store sold 260 toys. Find the percent increase in toys sold. (Round to the nearest whole percent.)",
+        "answer": 30.0,
+        "unit": "%",
+        "hints": [
+          "First find the increase: new amount - original amount",
+          "Then divide the increase by the original amount.",
+          "Convert the decimal to a percent."
+        ],
+        "solution": "Find the increase: 260 - 200 = 60 toys\nFind the percent increase: p = 60 ÷ 200 = 0.30 = 30%\nThe percent increase is 30%."
+      },
+      "check": {
+        "status": "verified",
+        "reason": "two code runs got 30, matching the key",
+        "solver_values": [
+          30.0,
+          30.0
+        ],
+        "rounds": 1
+      },
+      "german": {
+        "id": "p8",
+        "question": "Letztes Jahr verkaufte ein Geschäft 200 Spielzeuge. Dieses Jahr verkaufte das Geschäft 260 Spielzeuge. Berechne die prozentuale Steigerung der verkauften Spielzeuge. (Runde auf die nächste ganze Zahl.)",
+        "hints": [
+          "Berechne zuerst die Steigerung: neue Menge - ursprüngliche Menge",
+          "Teile dann die Steigerung durch die ursprüngliche Menge.",
+          "Wandle die Dezimalzahl in einen Prozentsatz um."
+        ],
+        "solution": "Berechne die Steigerung: 260 - 200 = 60 Spielzeuge\nBerechne die prozentuale Steigerung: p = 60 ÷ 200 = 0,30 = 30 %\nDie prozentuale Steigerung beträgt 30 %.",
+        "unit": "%"
+      },
+      "german_check": "same numbers as the English"
+    },
+    {
+      "problem": {
+        "id": "p9",
+        "level": "challenge",
+        "objective": "Find percent increase and percent decrease",
+        "question": "A worker earned $50,000 last year. This year due to layoffs, the worker earned $45,000. Find the percent decrease in earnings. (Round to the nearest tenth of a percent.)",
+        "answer": 10.0,
+        "unit": "%",
+        "hints": [
+          "First find the decrease: original amount - new amount",
+          "Then divide the decrease by the original amount.",
+          "Convert the decimal to a percent and round to the nearest tenth."
+        ],
+        "solution": "Find the decrease: 50,000 - 45,000 = 5,000\nFind the percent decrease: p = 5,000 ÷ 50,000 = 0.10 = 10.0%\nThe percent decrease is 10.0%."
+      },
+      "check": {
+        "status": "verified",
+        "reason": "two code runs got 10, matching the key",
+        "solver_values": [
+          10.0,
+          10.0
+        ],
+        "rounds": 1
+      },
+      "german": {
+        "id": "p9",
+        "question": "Ein Arbeitnehmer verdiente letztes Jahr 50.000 $. Dieses Jahr verdiente der Arbeitnehmer aufgrund von Entlassungen 45.000 $. Berechne die prozentuale Abnahme der Verdienste. (Runde auf die nächste Dezimalstelle.)",
+        "hints": [
+          "Berechne zuerst die Abnahme: ursprüngliche Menge - neue Menge",
+          "Teile dann die Abnahme durch die ursprüngliche Menge.",
+          "Wandle die Dezimalzahl in einen Prozentsatz um und runde auf die nächste Dezimalstelle."
+        ],
+        "solution": "Berechne die Abnahme: 50.000 - 45.000 = 5.000\nBerechne die prozentuale Abnahme: p = 5.000 ÷ 50.000 = 0,10 = 10,0 %\nDie prozentuale Abnahme beträgt 10,0 %.",
         "unit": "%"
       },
       "german_check": "same numbers as the English"
@@ -337,46 +347,47 @@
       "problem": {
         "id": "p10",
         "level": "challenge",
-        "objective": "Find percent increase and decrease",
-        "question": "A bus company raised fares from $2.50 to $3.00 per ride. What is the percent increase in the fare? (Round to the nearest tenth of a percent.)",
-        "answer": 20.0,
+        "objective": "Find percent increase and percent decrease",
+        "question": "A town's population was 15,000 people in 2015. In 2020, the population was 16,500 people. Find the percent increase in population. (Round to the nearest tenth of a percent.)",
+        "answer": 10.0,
         "unit": "%",
         "hints": [
-          "Find the amount of increase: 3.00 - 2.50.",
-          "The increase is what percent of the original fare of $2.50?",
-          "Set up the equation: increase = p × 2.50, then solve and convert to percent."
+          "Find the increase by subtracting: new amount - original amount",
+          "Divide the increase by the original amount (15,000).",
+          "Convert the decimal to a percent and round to the nearest tenth."
         ],
-        "solution": "Find the increase: 3.00 - 2.50 = 0.50\nLet p = percent increase\nTranslate: 0.50 = p × 2.50\nDivide by 2.50: p = 0.50 ÷ 2.50 = 0.20\nConvert to percent: 0.20 = 20%\nAnswer: 20%"
+        "solution": "Find the increase: 16,500 - 15,000 = 1,500 people\nFind the percent increase: p = 1,500 ÷ 15,000 = 0.10 = 10.0%\nThe percent increase is 10.0%."
       },
       "check": {
         "status": "verified",
-        "reason": "two code runs got 20, matching the key",
+        "reason": "two code runs got 10, matching the key",
         "solver_values": [
-          20.0,
-          20.0
+          10.0,
+          10.0
         ],
         "rounds": 1
       },
       "german": {
         "id": "p10",
-        "question": "Ein Busunternehmen erhöhte die Fahrkarten von 2,50 $ auf 3,00 $ pro Fahrt. Wie hoch ist die prozentuale Steigerung der Fahrkarte? (Runde auf die nächste Zehntel eines Prozentsatzes.)",
+        "question": "Die Bevölkerung einer Stadt betrug 2015 genau 15.000 Personen. Im Jahr 2020 waren es 16.500 Personen. Berechne die prozentuale Zunahme der Bevölkerung. (Runde auf die nächste Zehntel Prozent.)",
         "hints": [
-          "Berechne den Anstieg: 3,00 - 2,50.",
-          "Der Anstieg ist wie viel Prozent des ursprünglichen Fahrkartentarifs von 2,50 $?",
-          "Stelle die Gleichung auf: Anstieg = p × 2,50, dann lösen und in Prozent umwandeln."
+          "Berechne die Zunahme durch Subtraktion: neuer Wert – ursprünglicher Wert",
+          "Teile die Zunahme durch den ursprünglichen Wert (15.000).",
+          "Wandle die Dezimalzahl in Prozent um und runde auf die nächste Zehntel Prozent."
         ],
-        "solution": "Berechne den Anstieg: 3,00 - 2,50 = 0,50\nLass p = prozentuale Steigerung\nÜbersetzung: 0,50 = p × 2,50\nTeile durch 2,50: p = 0,50 ÷ 2,50 = 0,20\nWandle in Prozent um: 0,20 = 20 %\nAntwort: 20 %",
+        "solution": "Berechne die Zunahme: 16.500 – 15.000 = 1.500 Personen\nBerechne die prozentuale Zunahme: p = 1.500 ÷ 15.000 = 0,10 = 10,0 %\nDie prozentuale Zunahme beträgt 10,0 %.",
         "unit": "%"
       },
       "german_check": "same numbers as the English"
     }
   ],
-  "cost_usd": 0.03533183,
+  "cost_usd": 0.040409685,
   "stats": {
     "drafted": 10,
-    "verified": 9,
+    "verified": 10,
     "keys fixed after a code check": 0,
-    "rejected": 1,
-    "translated": 9
+    "rejected": 0,
+    "translated": 10,
+    "model errors": 0
   }
 }
