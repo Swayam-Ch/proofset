@@ -31,6 +31,9 @@ def number(x: float, lang: str) -> str:
 
 def answer(x: float, unit: str, lang: str) -> str:
     n = number(x, lang)
+    if unit == "$" and x != int(x):  # money keeps its cents: $14.40, not $14.4
+        n = f"{x:,.2f}"
+        n = n.replace(",", "\u202f").replace(".", ",").replace("\u202f", ".") if lang == "de" else n
     if unit == "$":
         return f"{n} $" if lang == "de" else f"${n}"
     if unit == "%":
@@ -53,7 +56,8 @@ def render(ps: PracticeSet, lang: str = "en") -> str:
             text = i.german if lang == "de" else i.problem
             rows.append(f'<div class="q"><p><b>{n}.</b> {e(text.question)}</p><div class="work">{L["work"]}</div></div>')
             hints = "".join(f"<li>{e(h)}</li>" for h in text.hints)
-            keys.append(f"<li><b>{e(answer(i.problem.answer, i.problem.unit, lang))}</b><br>"
+            unit = i.problem.unit if i.problem.unit in ("$", "%") or lang == "en" else (text.unit or i.problem.unit)
+            keys.append(f"<li><b>{e(answer(i.problem.answer, unit, lang))}</b><br>"
                         f"<span>{e(text.solution)}</span><details><summary>{L['hints']}</summary><ol>{hints}</ol></details></li>")
     goals = "".join(f"<li>{e(o)}</li>" for o in ps.objectives) if lang == "en" else ""
     title = ps.title_de if lang == "de" and ps.title_de else ps.title
@@ -68,7 +72,7 @@ h1 {{ font-size: 20pt; margin: 0 0 4px; }} h2 {{ font-size: 13pt; margin: 22px 0
 .meta {{ display: flex; gap: 40px; margin: 10px 0 14px; }} .meta span {{ display: inline-block; border-bottom: 1px solid #000; width: 200px; }}
 .q {{ break-inside: avoid; margin: 10px 0 14px; }} .work {{ height: 90px; border: 1px dashed #bbb; color: #999;
 font-size: 9pt; padding: 4px 6px; }} .key {{ break-before: page; }} .key li {{ margin-bottom: 10px; }}
-.key span {{ color: #333; font-size: 11pt; }} .note, .src {{ font-size: 9pt; color: #555; }}
+.key span {{ color: #333; font-size: 11pt; white-space: pre-line; }} .note, .src {{ font-size: 9pt; color: #555; }}
 details {{ font-size: 10pt; }} @media print {{ details {{ display: none; }} }}
 </style></head><body>
 <h1>{e(title)}</h1><div class="meta"><div>{L['name']}: <span></span></div><div>{L['date']}: <span></span></div></div>

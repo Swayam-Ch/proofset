@@ -2,6 +2,7 @@
 
     proofset sections Percents             list the sections of a chapter
     proofset build m81313                  write sets/m81313.json and printable worksheets (en, de)
+    proofset render sets/m81313.json       rewrite the worksheets from a saved set
     proofset tutor sets/m81313.json --lang de
 """
 
@@ -46,6 +47,19 @@ def cmd_build(args) -> int:
     return 0
 
 
+def cmd_render(args) -> int:
+    from .schema import PracticeSet
+    from .worksheet import render
+
+    path = Path(args.practice_set)
+    ps = PracticeSet.model_validate_json(path.read_text())
+    for lang in ("en", "de"):
+        out = path.with_name(f"{path.stem}-{lang}.html")
+        out.write_text(render(ps, lang), encoding="utf-8")
+        print(f"wrote {out}")
+    return 0
+
+
 def cmd_tutor(args) -> int:
     from .schema import PracticeSet
     from .tutor import Session, make_agent
@@ -83,6 +97,9 @@ def main() -> int:
     p.add_argument("--out", default="sets")
     p.add_argument("--english-only", action="store_true")
     p.set_defaults(run=cmd_build)
+    p = sub.add_parser("render", help="rewrite a set's worksheets from its JSON, without any model calls")
+    p.add_argument("practice_set")
+    p.set_defaults(run=cmd_render)
     p = sub.add_parser("tutor", help="practise a set with the tutor")
     p.add_argument("practice_set")
     p.add_argument("--lang", default="en", choices=["en", "de"])

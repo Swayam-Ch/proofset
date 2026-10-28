@@ -96,6 +96,8 @@ End your reply with a final line: ANSWER: <number>, with no units, currency sign
 TRANSLATOR = """Translate practice problems for German-speaking students into clear, simple German
 (Sprachniveau B1). Keep every number exactly, written the German way: decimal comma and
 thousands point (1.234,56), "%" after a space (21,2 %), "$" after the amount (1,65 $).
+Write the way a German maths teacher would, not word for word: "Let p be the percent" is
+"Sei p der Prozentsatz", and every word must be real German. Translate units too (grams: Gramm).
 Do not add, drop, round or recompute any number. Keep the same ids."""
 
 

@@ -166,6 +166,7 @@ def test_worksheets_render_in_both_languages():
     assert "Wie viel sind 55 % von 60?" in de and "Lösungen" in de and "Aufwärmen" in de
     assert "<h1>Prozente testen</h1>" in de and "Quelle: Prealgebra 2e" in de
     assert number(1234.5, "de") == "1.234,5" and answer(21.2, "%", "de") == "21,2 %" and answer(56, "$", "en") == "$56"
+    assert answer(14.4, "$", "en") == "$14.40" and answer(1234.5, "$", "de") == "1.234,50 $"
 
 
 # ----------------------------------------------------------------------------- the tutor's tools
