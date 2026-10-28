@@ -33,6 +33,7 @@ class Translation(BaseModel):
 
 
 class TranslatedSet(BaseModel):
+    title: str = Field("", description="The chapter title in German")
     problems: list[Translation]
 
 
@@ -54,6 +55,7 @@ class SetProblem(BaseModel):
 
 class PracticeSet(BaseModel):
     title: str
+    title_de: str = ""
     source: str
     objectives: list[str]
     problems: list[SetProblem]

@@ -56,19 +56,23 @@ def render(ps: PracticeSet, lang: str = "en") -> str:
             keys.append(f"<li><b>{e(answer(i.problem.answer, i.problem.unit, lang))}</b><br>"
                         f"<span>{e(text.solution)}</span><details><summary>{L['hints']}</summary><ol>{hints}</ol></details></li>")
     goals = "".join(f"<li>{e(o)}</li>" for o in ps.objectives) if lang == "en" else ""
+    title = ps.title_de if lang == "de" and ps.title_de else ps.title
+    source = ps.source if lang == "en" else (
+        "Quelle: Prealgebra 2e von OpenStax, https://openstax.org/details/books/prealgebra-2e, Lizenz "
+        "CC BY-NC-SA 4.0. Die Aufgaben sind neue Fragen zu diesem Kapitel.")
     return f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8">
-<title>{e(ps.title)}</title><style>
+<title>{e(title)}</title><style>
 @page {{ size: A4; margin: 18mm; }}
 body {{ font: 12pt/1.45 Georgia, serif; color: #111; max-width: 760px; margin: 24px auto; padding: 0 16px; }}
 h1 {{ font-size: 20pt; margin: 0 0 4px; }} h2 {{ font-size: 13pt; margin: 22px 0 6px; border-bottom: 1px solid #999; }}
-.meta {{ display: flex; gap: 40px; margin: 10px 0 14px; }} .meta span {{ border-bottom: 1px solid #000; min-width: 180px; }}
+.meta {{ display: flex; gap: 40px; margin: 10px 0 14px; }} .meta span {{ display: inline-block; border-bottom: 1px solid #000; width: 200px; }}
 .q {{ break-inside: avoid; margin: 10px 0 14px; }} .work {{ height: 90px; border: 1px dashed #bbb; color: #999;
 font-size: 9pt; padding: 4px 6px; }} .key {{ break-before: page; }} .key li {{ margin-bottom: 10px; }}
 .key span {{ color: #333; font-size: 11pt; }} .note, .src {{ font-size: 9pt; color: #555; }}
 details {{ font-size: 10pt; }} @media print {{ details {{ display: none; }} }}
 </style></head><body>
-<h1>{e(ps.title)}</h1><div class="meta"><div>{L['name']}: <span></span></div><div>{L['date']}: <span></span></div></div>
+<h1>{e(title)}</h1><div class="meta"><div>{L['name']}: <span></span></div><div>{L['date']}: <span></span></div></div>
 {f"<p>{L['goals']}:</p><ul>{goals}</ul>" if goals else ""}
 {''.join(rows)}
 <section class="key"><h2>{L['key']}</h2><ol>{''.join(keys)}</ol><p class="note">{L['checked']}</p>
-<p class="src">{e(ps.source)}</p></section></body></html>"""
+<p class="src">{e(source)}</p></section></body></html>"""

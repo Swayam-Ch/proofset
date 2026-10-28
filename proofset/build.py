@@ -66,29 +66,30 @@ class Builder:
                 checked[p.id] = (p, r)
 
         items = [SetProblem(problem=p, check=r[1]) for p, r in checked.values()]
-        if german:
-            self.translate([i for i in items if i.check.status == "verified"])
+        title_de = self.translate([i for i in items if i.check.status == "verified"], module.title) if german else ""
 
         verified = [i for i in items if i.check.status == "verified"]
         return PracticeSet(
-            title=module.title, source=openstax.attribution(), objectives=module.objectives, problems=items,
+            title=module.title, title_de=title_de, source=openstax.attribution(), objectives=module.objectives, problems=items,
             cost_usd=sum(r.cost_usd for r in self.replies),
             stats={"drafted": len(problems), "verified": len(verified),
                    "keys fixed after a code check": sum(i.check.rounds == 2 for i in verified),
                    "rejected": len(items) - len(verified),
                    "translated": sum(i.german is not None for i in verified)})
 
-    def translate(self, items: list[SetProblem], tries: int = 2) -> None:
-        todo = items
+    def translate(self, items: list[SetProblem], title: str, tries: int = 2) -> str:
+        """Translate the verified problems; returns the German chapter title."""
+        todo, title_de = items, ""
         for attempt in range(tries):
             if not todo:
-                return
-            payload = "\n\n".join(
+                break
+            payload = f"Chapter title: {title}\n\n" + "\n\n".join(
                 f"id: {i.problem.id}\nquestion: {i.problem.question}\nunit: {i.problem.unit}\n"
                 f"hints: {i.problem.hints}\nsolution: {i.problem.solution}" for i in todo)
             if attempt:
                 payload = "Last time some numbers changed. Keep every number exactly.\n\n" + payload
             out = self._ask(agents.LARGE, agents.TRANSLATOR, payload, output=TranslatedSet).structured
+            title_de = title_de or out.title
             by_id = {t.id: t for t in out.problems}
             retry = []
             for item in todo:
@@ -101,3 +102,4 @@ class Builder:
                 else:
                     item.german_check, retry = f"not used: {why}", retry + [item]
             todo = retry
+        return title_de

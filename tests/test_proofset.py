@@ -129,7 +129,7 @@ class Scripted:
         if output is TranslatedSet:
             self.translations += 1
             wrong_first = self.translations == 1
-            return agents.Reply(model_id, "", TranslatedSet(problems=[
+            return agents.Reply(model_id, "", TranslatedSet(title="Prozente testen", problems=[
                 Translation(id="p1", question="Wie viel sind 55 % von 60?", hints=["Schreibe den Prozentsatz als "
                             "Dezimalzahl.", "Multipliziere."], solution="Die Lösung ist 33."),
                 Translation(id="p2", question="Wie viel sind 10 % von 200?", hints=["Dezimalzahl.", "Multipliziere."],
@@ -164,6 +164,7 @@ def test_worksheets_render_in_both_languages():
     en, de = render(ps, "en"), render(ps, "de")
     assert "What is 55% of 60?" in en and "Answer key" in en and "OpenStax" in en
     assert "Wie viel sind 55 % von 60?" in de and "Lösungen" in de and "Aufwärmen" in de
+    assert "<h1>Prozente testen</h1>" in de and "Quelle: Prealgebra 2e" in de
     assert number(1234.5, "de") == "1.234,5" and answer(21.2, "%", "de") == "21,2 %" and answer(56, "$", "en") == "$56"
 
 
