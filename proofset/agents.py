@@ -62,7 +62,11 @@ def bedrock_ask(model_id: str, system: str, prompt: str, *, code: bool = False, 
 
     runs: list[dict] = []
     tools = [make_run_python(log=runs)] if code else []
-    agent = Agent(model=BedrockModel(model_id=model_id, region_name=REGION), system_prompt=system,
+    from botocore.config import Config
+
+    model = BedrockModel(model_id=model_id, region_name=REGION, boto_client_config=Config(
+        read_timeout=300, connect_timeout=20, retries={"max_attempts": 5, "mode": "adaptive"}))
+    agent = Agent(model=model, system_prompt=system,
                   tools=tools, callback_handler=None, hooks=[RunBudget()] if code else None)
     started = time.perf_counter()
     result = agent(prompt, structured_output_model=output) if output else agent(prompt)

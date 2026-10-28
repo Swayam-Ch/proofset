@@ -22,7 +22,7 @@ LEVELS = {"warm-up": 3, "practice": 4, "challenge": 3}
 
 class Builder:
     def __init__(self, ask: Ask = agents.bedrock_ask, workers: int = 8):
-        self.ask, self.workers, self.replies = ask, workers, []
+        self.ask, self.workers, self.replies, self.errors = ask, workers, [], []
 
     def _ask(self, *args, **kwargs) -> agents.Reply:
         reply = self.ask(*args, **kwargs)
@@ -31,7 +31,11 @@ class Builder:
 
     # ------------------------------------------------------------------ solving
     def solve(self, problem: Problem, model: str) -> verify.Solve:
-        reply = self._ask(model, agents.SOLVER, problem.question, code=True)
+        try:
+            reply = self._ask(model, agents.SOLVER, problem.question, code=True)
+        except Exception as exc:  # counts as "no code ran": the problem is held back, the build goes on
+            self.errors.append(f"solve: {type(exc).__name__}")
+            return verify.Solve(None, None, False)
         return verify.Solve(verify.answer_line(reply.text), verify.printed_value(reply.runs), bool(reply.runs))
 
     def check(self, problem: Problem, rounds: int = 1) -> tuple[str, Check, float | None]:
@@ -75,10 +79,17 @@ class Builder:
             stats={"drafted": len(problems), "verified": len(verified),
                    "keys fixed after a code check": sum(i.check.rounds == 2 for i in verified),
                    "rejected": len(items) - len(verified),
-                   "translated": sum(i.german is not None for i in verified)})
+                   "translated": sum(i.german is not None for i in verified),
+                   "model errors": len(self.errors)})
 
-    def translate(self, items: list[SetProblem], title: str, tries: int = 2) -> str:
-        """Translate the verified problems; returns the German chapter title."""
+    def translate(self, items: list[SetProblem], title: str, tries: int = 2, batch: int = 3) -> str:
+        """Translate the verified problems in small parallel batches; returns the German title."""
+        groups = [items[i:i + batch] for i in range(0, len(items), batch)]
+        with ThreadPoolExecutor(self.workers) as pool:
+            titles = list(pool.map(lambda g: self._translate_batch(g, title, tries), groups))
+        return next((t for t in titles if t), "")
+
+    def _translate_batch(self, items: list[SetProblem], title: str, tries: int) -> str:
         todo, title_de = items, ""
         for attempt in range(tries):
             if not todo:
@@ -88,7 +99,13 @@ class Builder:
                 f"hints: {i.problem.hints}\nsolution: {i.problem.solution}" for i in todo)
             if attempt:
                 payload = "Last time some numbers changed. Keep every number exactly.\n\n" + payload
-            out = self._ask(agents.LARGE, agents.TRANSLATOR, payload, output=TranslatedSet).structured
+            try:
+                out = self._ask(agents.LARGE, agents.TRANSLATOR, payload, output=TranslatedSet).structured
+            except Exception as exc:  # a slow or failed call leaves these problems in English only
+                self.errors.append(f"translation: {type(exc).__name__}")
+                for item in todo:
+                    item.german_check = f"not used: translation failed ({type(exc).__name__})"
+                return title_de
             title_de = title_de or out.title
             by_id = {t.id: t for t in out.problems}
             retry = []

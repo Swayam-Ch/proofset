@@ -197,3 +197,17 @@ def test_two_small_solvers_alone_never_overrule_a_key():
     assert verify.tiebreak(12, "", shared_mistake + [solve(10)], "key wrong", "", 10)[0] == "key wrong"
     assert verify.tiebreak(12, "", shared_mistake + [solve(11)], "key wrong", "", 10)[0] == "unsure"
     assert verify.tiebreak(12, "", [solve(12), solve(13), solve(12)], "unsure", "", None)[0] == "verified"
+
+
+def test_failed_model_calls_hold_problems_back_instead_of_crashing():
+    class Flaky(Scripted):
+        def __call__(self, model_id, system, prompt, code=False, output=None):
+            if output is TranslatedSet or (code and prompt == "Find 15% of 80."):
+                raise TimeoutError("Read timed out.")
+            return super().__call__(model_id, system, prompt, code, output)
+
+    ps = Builder(ask=Flaky()).build(openstax.parse_module(CNXML))
+    by_id = {i.problem.id: i for i in ps.problems}
+    assert by_id["p3"].check.status == "rejected"                       # every solve failed
+    assert by_id["p1"].german is None and "translation failed" in by_id["p1"].german_check
+    assert ps.stats["model errors"] > 0 and ps.stats["verified"] == 2
