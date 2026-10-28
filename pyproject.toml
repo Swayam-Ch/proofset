@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proofset"
+version = "0.1.0"
+description = "Verified practice sets and a tutor from free textbooks, in English and German, built with Strands Agents"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = ["strands-agents>=1.10", "boto3", "pydantic>=2"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+proofset = "proofset.cli:main"
+
+[tool.setuptools]
+packages = ["proofset"]
