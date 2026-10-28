@@ -54,9 +54,46 @@ OpenStax chapter ──► author agent ──► problems with answer keys
 
 ## Results
 
-Run `python bench/key_bench.py` to measure, on the OpenStax word problems that come with official
-answers, how many keys a model writes wrong and how many of those proofset's check lets through.
-Results go here after the run.
+**Answer keys.** [`bench/key_bench.py`](bench/key_bench.py) uses the 109 word problems in the
+*Percents* chapter of OpenStax Prealgebra 2e that come with an official numeric answer. Claude
+Haiku 4.5 writes each answer key from its head, the way a worksheet generator would, and proofset
+checks it. Every outcome is graded against the official answer.
+
+![Wrong answer keys written vs shipped](docs/answer-keys.png)
+
+| | Run 1 | Run 2 | Run 3 |
+| --- | ---: | ---: | ---: |
+| Wrong keys written by Claude Haiku 4.5 | 11 | 11 | 9 |
+| **Wrong keys shipped after proofset's check** | **0** | **0** | **0** |
+| Good keys shipped | 88 | 82 | 91 |
+| Good keys held back | 10 | 15 | 9 |
+| LLM cost for 109 problems | $0.17 | $0.19 | $0.26 |
+
+Across 327 checked keys, 31 were wrong and none got through. Five wrong keys per run are format
+questions ("write 89% as a ratio": the book wants 0.89, the model wrote 89). The rest are real
+arithmetic mistakes in the applications, for example $11,445.59 instead of $11,450 of simple
+interest and 5,646 yen instead of 56,460. Results per run and per problem:
+[run 1](bench/reported/keys-run1-summary.md), [run 2](bench/reported/keys-run2-summary.md),
+[run 3](bench/reported/keys-run3-summary.md).
+
+What the runs taught me, and what changed between them:
+
+- **Code rounds differently from school.** In run 1 both solvers turned 6.25% into 6.2%, because
+  Python's `round()` rounds halves to even; the book says 6.3%. Two solvers sharing a mistake
+  agree with each other, so agreement alone couldn't catch it. Solvers now round halves up with
+  `decimal`. Run 2 over-corrected (everything rounded to tenths, more good keys held back); run 3
+  rounds only when the problem asks, to the precision it asks for.
+- **Two small models can make the same mistake.** In proportion problems both Nova Micro runs
+  sometimes got 13 where the answer is 12.8. So two small solvers alone never overrule a key: a
+  third solve on Claude Haiku has to agree with them, otherwise the problem is held back, never
+  "fixed" to a wrong value.
+- **Holding back is the price.** Between 9% and 15% of good problems were held back, depending on
+  the run. That costs the teacher a problem, not the student a wrong answer.
+
+**A practice set.** One section (*Solve General Applications of Percent*) becomes 10 problems in
+English and German in about 30 seconds, for $0.03 to $0.04 in LLM cost, so a worksheet for a class
+of 30 costs about a tenth of a cent per student. See [`examples/`](examples/) for a real set and
+its printable worksheets.
 
 ## Quick start
 
@@ -94,6 +131,8 @@ proofset/tutor.py       the tutor agent and its tools
 lambda/sandbox/         the Lambda function
 deploy/                 creates the function and its logs-only role
 bench/key_bench.py      the answer-key benchmark against official answers
+bench/reported/         saved benchmark results
+examples/               a generated practice set with its worksheets (CC BY-NC-SA, like the book)
 ```
 
 ## Content and licences
