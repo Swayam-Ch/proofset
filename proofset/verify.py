@@ -79,6 +79,24 @@ def check(key: float, unit: str, solves: list[Solve]) -> tuple[str, str, float |
     return "unsure", "the solvers disagree: " + ", ".join(f"{s.answer:g}" for s in grounded), None
 
 
+def tiebreak(key: float, unit: str, solves: list[Solve], status: str, reason: str,
+             value: float | None) -> tuple[str, str, float | None]:
+    """Decide with a third solve from a different model (the last in `solves`).
+
+    The two small solvers can share a mistake (same wrong program, same rounding slip), so they
+    alone never overrule a key: the key counts as wrong only if the third model's code agrees with
+    them. If it sides with the key, the problem is held back rather than "fixed".
+    """
+    third = solves[-1]
+    if status == "key wrong":
+        if third.grounded and matches_key(third.answer, key, unit):
+            return "unsure", f"the small models got {value:g}, but the larger model agrees with the key", None
+        if third.grounded and close(third.answer, value, rel=1e-4):
+            return "key wrong", f"three code runs on two models got {value:g}, but the key says {key:g}", value
+        return "unsure", f"the small models got {value:g}, the larger model got {third.answer}", None
+    return check(key, unit, solves)
+
+
 # ----------------------------------------------------------------------------- German numbers
 
 DE_NUMBER = re.compile(r"-?\d{1,3}(?:\.\d{3})+(?:,\d+)?|-?\d+(?:,\d+)?")

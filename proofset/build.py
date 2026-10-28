@@ -38,9 +38,9 @@ class Builder:
         with ThreadPoolExecutor(2) as pool:
             solves = list(pool.map(lambda _: self.solve(problem, agents.SMALL), range(2)))
         status, reason, value = verify.check(problem.answer, problem.unit, solves)
-        if status == "unsure":
+        if status != "verified":  # a third solve, on a different model family, before deciding
             solves.append(self.solve(problem, agents.LARGE))
-            status, reason, value = verify.check(problem.answer, problem.unit, solves)
+            status, reason, value = verify.tiebreak(problem.answer, problem.unit, solves, status, reason, value)
         result = Check(status="verified" if status == "verified" else "rejected", reason=reason,
                        solver_values=[s.answer for s in solves], rounds=rounds)
         return status, result, value

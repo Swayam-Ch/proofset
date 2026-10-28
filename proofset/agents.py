@@ -85,11 +85,12 @@ Many of them are in under-resourced schools or are learning in a second language
 Match the methods taught in the chapter. Do not copy its exercises."""
 
 SOLVER = """Solve the problem. Do every calculation by writing a short Python program with the
-run_python tool, and print the final result on the last line. Apply the rounding the problem asks
-for the way schools do, with halves rounding up: use
-Decimal(str(x)).quantize(Decimal("0.1"), rounding=ROUND_HALF_UP) from the decimal module, never
-round() or string formatting, which turn 6.25 into 6.2. If the answer is a percent, give the
-percent number (21.2 for 21.2%).
+run_python tool, and print the final result on the last line.
+Round only if the problem asks you to. Then round the way schools do, halves up, with the decimal
+module: Decimal(str(x)).quantize(Decimal(q), rounding=ROUND_HALF_UP), where q is "1" for a whole
+number, "0.1" for tenths, "0.01" for cents or hundredths. Never use round() or string formatting
+to round: they turn 6.25 into 6.2. If no rounding is asked for, print the exact value.
+If the answer is a percent, give the percent number (21.2 for 21.2%).
 End your reply with a final line: ANSWER: <number>, with no units, currency signs or commas."""
 
 TRANSLATOR = """Translate practice problems for German-speaking students into clear, simple German

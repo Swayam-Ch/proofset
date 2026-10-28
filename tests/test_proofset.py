@@ -188,3 +188,11 @@ def test_tutor_session_checks_answers_gives_hints_and_logs():
     assert s.get_hint("p1").startswith("Hint 1 of 2")
     assert s.check_answer("p1", "I think 33") == "CORRECT on attempt 2."
     assert "1 solved, 0 right on the first try, 1 hints used" in s.summary()
+
+
+def test_two_small_solvers_alone_never_overrule_a_key():
+    shared_mistake = [solve(10), solve(10)]
+    assert verify.tiebreak(12, "", shared_mistake + [solve(12)], "key wrong", "", 10)[0] == "unsure"
+    assert verify.tiebreak(12, "", shared_mistake + [solve(10)], "key wrong", "", 10)[0] == "key wrong"
+    assert verify.tiebreak(12, "", shared_mistake + [solve(11)], "key wrong", "", 10)[0] == "unsure"
+    assert verify.tiebreak(12, "", [solve(12), solve(13), solve(12)], "unsure", "", None)[0] == "verified"
