@@ -23,7 +23,8 @@ PROMPT = {
           "(Sprachniveau B1) und duze die Schülerin oder den Schüler.",
 }
 RULES = """Use the tools for everything about the problems:
-- next_problem to give the student a problem; read it out exactly as the tool returns it.
+- next_problem to give the student a problem; show the student only the text after "SHOW:".
+  The id is for check_answer and get_hint; never show it.
 - check_answer whenever the student gives a number. Never decide yourself whether it is right.
 - get_hint when the student is stuck or wrong; give one hint at a time.
 Never state the answer before check_answer reveals it. Keep replies to 2 to 4 short sentences."""
@@ -71,7 +72,9 @@ class Session:
         if self.current >= len(self.items):
             return "DONE: no problems left. " + self.summary()
         item = self.items[self.current]
-        return f"Problem {self.current + 1} of {len(self.items)} (id {item.problem.id}): {self.text(item).question}"
+        label = "Aufgabe {n} von {total}" if self.lang == "de" else "Problem {n} of {total}"
+        return (f"id: {item.problem.id}\nSHOW: {label.format(n=self.current + 1, total=len(self.items))}: "
+                f"{self.text(item).question}")
 
     def check_answer(self, problem_id: str, student_answer: str) -> str:
         item = next((i for i in self.items if i.problem.id == problem_id), None)

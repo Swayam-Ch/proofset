@@ -182,7 +182,8 @@ def test_tutor_session_checks_answers_gives_hints_and_logs():
         SetProblem(problem=problem("p1", "What is 55% of 60?", 33), check=Check(status="verified", reason="")),
         SetProblem(problem=problem("p2", "Bad one", 1), check=Check(status="rejected", reason=""))])
     s = Session(ps, "en")
-    assert "What is 55% of 60?" in s.next_problem() and len(s.items) == 1     # rejected problems never shown
+    shown = s.next_problem()
+    assert "SHOW: Problem 1 of 1: What is 55% of 60?" in shown and len(s.items) == 1  # rejected never shown
     assert s.check_answer("p1", "30").startswith("NOT YET")
     assert s.get_hint("p1").startswith("Hint 1 of 2")
     assert s.check_answer("p1", "I think 33") == "CORRECT on attempt 2."

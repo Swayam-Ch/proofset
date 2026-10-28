@@ -35,6 +35,9 @@ from proofset.build import Builder  # noqa: E402
 from proofset.schema import Problem  # noqa: E402
 
 PERCENTS = ["m81306", "m81313", "m81307", "m81308", "m81311"]
+TITLES = {"m81306": "Understand Percent", "m81313": "General Applications of Percent",
+          "m81307": "Sales Tax, Commission, Discount", "m81308": "Simple Interest",
+          "m81311": "Proportions"}
 KEY_WRITER = """Solve the problem. End your reply with a final line: ANSWER: <number>, with no units,
 currency signs or commas. If the answer is a percent, give the percent number (21.2 for 21.2%)."""
 OUTCOMES = ["good key shipped", "WRONG KEY SHIPPED", "wrong key caught", "good key dropped", "no key"]
@@ -62,6 +65,13 @@ def summarise(rows: list[dict], cost: float) -> str:
              f"- Keys shipped after proofset's check: {shipped}, of which wrong: {counts['WRONG KEY SHIPPED']}",
              f"- LLM cost for the whole run: ${cost:.4f}", "", "| Outcome | Problems |", "| --- | ---: |"]
     lines += [f"| {o} | {c} |" for o, c in counts.items()]
+    lines += ["", "## By section", "", "| Section | Problems | Wrong keys written | Wrong keys shipped | "
+              "Good keys dropped |", "| --- | ---: | ---: | ---: | ---: |"]
+    for mid in dict.fromkeys(r["module"] for r in rows):
+        mine = [r for r in rows if r["module"] == mid]
+        lines.append(f"| {mid} {TITLES.get(mid, '')} | {len(mine)} | {sum(not r['key_right'] for r in mine)} | "
+                     f"{sum(r['outcome'] == 'WRONG KEY SHIPPED' for r in mine)} | "
+                     f"{sum(r['outcome'] == 'good key dropped' for r in mine)} |")
     lines += ["", "## Wrong keys", "", "| Problem | Official | Key | Check |", "| --- | ---: | ---: | --- |"]
     lines += [f"| `{r['module']}/{r['id']}` | {r['official']} | {r['key']} | {r['outcome']}: {r['reason']} |"
               for r in rows if not r["key_right"]]

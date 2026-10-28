@@ -54,13 +54,14 @@ def cmd_tutor(args) -> int:
     session = Session(PracticeSet.model_validate_json(path.read_text()), args.lang)
     agent = make_agent(session)
     greeting = {"en": "Hi! Give me my first problem, please.", "de": "Hallo! Gib mir bitte die erste Aufgabe."}
+    print({"en": "(type end to finish)", "de": "(tippe ende zum Beenden)"}[args.lang])
     print(f"\n{agent(greeting[args.lang])}\n")
     while True:
         try:
             said = input("you> ").strip()
         except EOFError:
             break
-        if said.lower() in {"exit", "quit", "ende"}:
+        if said.lower().strip(".!") in {"exit", "quit", "end", "ende", "stop", "tschüss", "bye"}:
             break
         if said:
             print(f"\n{agent(said)}\n")

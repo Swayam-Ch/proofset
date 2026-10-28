@@ -78,14 +78,18 @@ Many of them are in under-resourced schools or are learning in a second language
 - use everyday situations they know: shopping, wages, bus fares, phone plans, food labels, savings;
 - keep sentences short and words simple; one question per problem;
 - every problem must be self-contained and have exactly one numeric answer;
-- say how to round whenever the answer is not a whole number (e.g. "to the nearest cent");
+- say how to round whenever the answer is not a whole number (e.g. "to the nearest cent"),
+  and round the key the way schools do: halves round up (6.25 to the nearest tenth is 6.3);
 - for percent answers, give `answer` as the percent number (21.2 for 21.2%) and `unit` "%";
 - hints go one step at a time and never state the answer.
 Match the methods taught in the chapter. Do not copy its exercises."""
 
 SOLVER = """Solve the problem. Do every calculation by writing a short Python program with the
-run_python tool, and print the final result on the last line. Apply the rounding the problem
-asks for. If the answer is a percent, give the percent number (21.2 for 21.2%).
+run_python tool, and print the final result on the last line. Apply the rounding the problem asks
+for the way schools do, with halves rounding up: use
+Decimal(str(x)).quantize(Decimal("0.1"), rounding=ROUND_HALF_UP) from the decimal module, never
+round() or string formatting, which turn 6.25 into 6.2. If the answer is a percent, give the
+percent number (21.2 for 21.2%).
 End your reply with a final line: ANSWER: <number>, with no units, currency signs or commas."""
 
 TRANSLATOR = """Translate practice problems for German-speaking students into clear, simple German
